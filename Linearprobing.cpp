@@ -5,6 +5,7 @@ using namespace std;
 int size = 10;
 
 // Lamda should be always less or equal to 0.5
+// Here f(i) = i;
 // Avg succcessful search t = 1/lamda*ln(1/1-lamda)
 // avg unsuccessful search t = 1/1-lamda
 // Linear probing has a problem of primary clusting.
