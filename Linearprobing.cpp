@@ -13,14 +13,14 @@ int size = 10;
 // Hashing using linear probing
 
 
-int Hashed(int key)
+int hashfunc(int key)
 {
     return key%size;
 }
 
 int probe(int H[], int key)
 {
-    int index = Hashed(key);
+    int index = hashfunc(key);
     int i = 0;
     while(H[(index+i)%size]!=0)
     {
@@ -32,26 +32,38 @@ int probe(int H[], int key)
 
 void Insert(int H[], int key)
 {
-     int index = Hashed(key);
-     
+     int index = hashfunc(key);
      if(H[index]!=0)
      {
         index = probe(H,key);
-        H[index] = key;
      }
+     H[index] = key;
 }
 
+int Search(int H[], int key)
+{
+    int index = hashfunc(key);
+    int i = 0;
+
+    while(H[(index+i)%size]!=key)
+    {
+        i++;
+    }
+    return (index+i)%size;
+}
 
 
 int main()
 {
-    
-    int HT[10];
+    int HT[size] = {0};
 
     Insert(HT,12);
     Insert(HT,25);
     Insert(HT,35);
     Insert(HT,26);
+
+    
+    cout<<"Key found at "<<Search(HT,35)<<endl;
 
 
     return 0;
